@@ -5,7 +5,7 @@ import Clicker from "@/components/main/Clicker"
 import Purchasables from "@/components/main/Purchasables"
 
 export default function Home() {
-    const [count, setCount] = useState(10000)
+    const [count, setCount] = useState(0)
     const [clickCount, setClickCount] = useState(0)
     const [workers, setWorkers] = useState({})
     const [perSecond, setPerSecond] = useState(0)

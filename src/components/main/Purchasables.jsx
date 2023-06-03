@@ -7,6 +7,7 @@ import ItalianPNG from '@/assets/products/italian.png'
 import ChefHatPNG from '@/assets/products/chef_hat.png'
 
 import Background from '@/assets/main/background-tile.jpg'
+import Pizza from '@/assets/main/pizza.png'
 
 export default function Purchasables(props) {
     const purchasables = [
@@ -52,12 +53,22 @@ export default function Purchasables(props) {
                                 />
                             </div>
                             <div className='bg-white w-full rounded-md p-2 flex flex-row justify-between'>
-                                <div className='flex flex-col'>
-                                    <p>{e.title}</p>
-                                    <p>{e.price}</p>
-                                    <p>{e.perSecond}/s</p>
+                                <div className='flex flex-col pl-2 justify-between'>
+                                    <p className='text-3xl text-main-medium'>{e.title}</p>
+                                    <div className='flex flex-row gap-2'>
+                                        <div className='flex flex-row items-center gap-2 bg-main/20 px-2 rounded-lg'>
+                                            <Image
+                                                src={Pizza}
+                                                width={20}
+                                                height={20}
+                                                alt='Amount'
+                                            />
+                                            <p className='text-2xl text-main-medium/70'>{e.price}</p>
+                                        </div>
+                                        <p className='text-lg text-main-medium/50 bg-main/20 px-2 rounded-lg grid place-items-center'>{e.perSecond}/s</p>
+                                    </div>
                                 </div>
-                                <p className='text-main drop-shadow-md text-6xl grid place-items-center pr-5'>{props.workers[e.title] || 0}</p>
+                                <p className='text-main-medium drop-shadow-md text-6xl grid place-items-center pr-5'>{props.workers[e.title] || 0}</p>
                             </div>
                         </div>
                     )

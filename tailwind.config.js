@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       colors: {
         'main': 'rgb(46, 255, 176)',
+        'main-light': 'rgb(46, 255, 176)',
+        'main-medium': 'rgb(26, 185, 117)',
         'main-dark': 'rgb(17, 68, 46)'
       },
     },
