@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .animated_background {
-    background-image: linear-gradient(to bottom right, white 0%, white 5%, red 5%, red 10%);
+    /* background-image: linear-gradient(to bottom right, white 0%, white 5%, red 5%, red 10%); */
 }

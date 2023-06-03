@@ -5,8 +5,8 @@ import Clicker from "@/components/main/Clicker"
 import Purchasables from "@/components/main/Purchasables"
 
 export default function Home() {
-    const [count, setCount] = useState(0)
-    const [workers, setWorkers] = useState({Italian: 117  })
+    const [count, setCount] = useState(10000)
+    const [workers, setWorkers] = useState({})
     const [perSecond, setPerSecond] = useState(0)
 
     const [tick, setTick] = useState(0)
@@ -16,7 +16,8 @@ export default function Home() {
         /* --------------------- update amount based on workers --------------------- */
         let amount = 0
 
-        amount += workers.Italian / 10 || 0 // 0.1s per
+        amount += workers.italian * 0.1 || 0 //    0.1s per  /  Italian
+        amount += workers.chef_hat * 0.5 || 0 //   0.5s per  /  Chef's Hat
 
         setPerSecond(amount)
 

@@ -6,8 +6,15 @@ export default function Purchasables(props) {
     const purchasables = [
         {
             title: "Italian",
+            name: "italian",
             price: 10,
             perSecond: 0.1
+        },
+        {
+            title: "Chef's Hat",
+            name: "chef_hat",
+            price: 100,
+            perSecond: 0.5
         }
     ]
 
@@ -19,7 +26,7 @@ export default function Purchasables(props) {
                         className='w-full bg-red-400 text-green-900 cursor-pointer' 
                         onClick={() => {
                             if (props.count >= e.price) { // if user has enough money it updates the global workers object and takes the money away
-                                props.setWorkers(prev => ({...prev, [e.title]: (prev[e.title] || 0) + 1}))
+                                props.setWorkers(prev => ({...prev, [e.name]: (prev[e.name] || 0) + 1}))
                                 props.setCount(count => count - e.price)
                             }
                         }}>
