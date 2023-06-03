@@ -32,7 +32,8 @@ export default function Purchasables(props) {
             <div className='flex flex-col gap-5'>
                 {purchasables.map((e, i) => {
                     return (
-                        <div 
+                        <div
+                            key={i}
                             className='w-full animated_background shadow-md rounded-lg flex flex-row p-1' 
                             style={{ backgroundImage: `url(${Background.src})` }}
                             onClick={() => {
@@ -57,7 +58,7 @@ export default function Purchasables(props) {
                                     <p className='text-3xl text-main-medium'>{e.title}</p>
                                     <div className='flex flex-row gap-2'>
                                         <div className='flex flex-row items-center gap-2 bg-main/20 px-2 rounded-lg'>
-                                            <Image
+                                            <Image // i hate how many divs this is nested in but the layout it allot so i dont really know a better way to do this unless i use vanilla CSS and grid
                                                 src={Pizza}
                                                 width={20}
                                                 height={20}
@@ -68,15 +69,15 @@ export default function Purchasables(props) {
                                         <p className='text-lg text-main-medium/50 bg-main/20 px-2 rounded-lg grid place-items-center'>{e.perSecond}/s</p>
                                     </div>
                                 </div>
-                                <p className='text-main-medium drop-shadow-md text-6xl grid place-items-center pr-5'>{props.workers[e.title] || 0}</p>
+                                <p className='text-main-medium drop-shadow-md text-6xl grid place-items-center pr-5'>{props.workers[e.name] || 0}</p>
                             </div>
                         </div>
                     )
                 })}
             </div>
-            {/* <pre>
+            <pre>
                 {JSON.stringify(props.workers, null, 4)}
-            </pre> */}
+            </pre>
         </section>
     )
 }
