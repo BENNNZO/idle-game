@@ -5,7 +5,7 @@ import Clicker from "@/components/main/Clicker"
 import Purchasables from "@/components/main/Purchasables"
 
 export default function Home() {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1000)
     const [clickCount, setClickCount] = useState(0)
     const [workers, setWorkers] = useState({})
     const [perSecond, setPerSecond] = useState(0)
@@ -18,7 +18,7 @@ export default function Home() {
         let amount = 0
 
         amount += workers.italian * 0.1 || 0 //    0.1s per  /  Italian
-        amount += workers.chef_hat * 0.5 || 0 //   0.5s per  /  Chef's Hat
+        amount += workers.chef_hat * 2 || 0 //   0.5s per  /  Chef's Hat
 
         setPerSecond(amount)
 
@@ -40,7 +40,10 @@ export default function Home() {
         
     return (
         <main className="grid grid-cols-3 w-screen h-screen">
-            <div></div>
+            <div>
+                upgrades section
+                <p>{String(tick)}</p>
+            </div>
             <Clicker
                 count={count}
                 setCount={setCount}
