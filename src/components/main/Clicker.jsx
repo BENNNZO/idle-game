@@ -7,8 +7,7 @@ import Image from 'next/image';
 import Pizza from '@/assets/main/pizza.png'
 import Background from '@/assets/main/background.png'
 
-export default function Clicker() {
-    const [count, setCount] = useState(0)
+export default function Clicker(props) {
     // const [ppsControl, setPpsControl] = useState(new Date)
     // const [pps, setPps] = useState(0)
 
@@ -20,8 +19,8 @@ export default function Clicker() {
     return (
         <section className='h-full flex flex-col justify-center items-center overflow-hidden relative select-none'>
             <div className='flex flex-col absolute top-16 text-white drop-shadow-md text-center'>
-                <p className='text-7xl'>{count}</p>
-                {/* <p className='text-2xl'>Pizzas /s: {pps}</p> */}
+                <p className='text-7xl'>{Math.round(props.count * 10) / 10}</p>
+                <p className='text-2xl'>{props.perSecond}/s</p>
             </div>
             <Image
                 src={Background}
@@ -34,7 +33,7 @@ export default function Clicker() {
                 whileTap={{ scale: 0.98, transition: { type: "spring", stiffness: 800 }}}
                 initial={{ y: 10 }}
                 animate={{ y: 0, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
-                onClick={() => setCount(count => count + 1)}
+                onClick={() => props.click(count => count + 1)}
             >
                 <Image
                     src={Pizza}
