@@ -15,8 +15,8 @@ export default function Home() {
         setPerSecond(amount)
 
         const updateCount = setInterval(() => {
-            setCount(count => count + amount)
-        }, 1000);
+            setCount(count => count + amount / 100)
+        }, 10);
 
         return () => clearInterval(updateCount)
     }, [workers])
