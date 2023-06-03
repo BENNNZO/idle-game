@@ -8,19 +8,8 @@ import Pizza from '@/assets/main/pizza.png'
 import Background from '@/assets/main/background-tile.jpg'
 
 export default function Clicker(props) {
-    // const [ppsControl, setPpsControl] = useState(new Date)
-    // const [pps, setPps] = useState(0)
-
-    // useEffect(() => {
-    //     setPps(Math.round(1000 / (new Date - ppsControl)))
-    //     setPpsControl(new Date)
-    // }, [count])
-
-    function formatNumber(number) {
-        let arr = number.split("")
-
-        return 
-    }
+    const [clickPops, setClickPops] = useState([])
+    const [clickAmount, setClickAmount] = useState(1)
 
     return (
         <section 
@@ -31,27 +20,68 @@ export default function Clicker(props) {
                 <p className='text-7xl'>{(Math.round(props.count)).toLocaleString("en-US")}</p>
                 <p className='text-2xl'>{(Math.round(props.perSecond * 10) / 10).toLocaleString("en-US")}/s</p>
             </div>
-            {/* <Image
-                src={Background}
-                width={100}
-                height={100}
-                alt='background'
-                className='absolute top-0 left-0 -z-10 pointer-events-none'
-            /> */}
             <motion.div
-                whileTap={{ scale: 0.98, transition: { type: "spring", stiffness: 800 }}}
-                initial={{ y: 10, scaleY: 0.99 }}
-                animate={{ y: 0, scaleY: 1, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
-                onClick={() => props.click(count => count + 1)}
+                whileTap={{ scale: 0.95, transition: { type: "spring", stiffness: 1000 }}}
+                initial={{ y: 10 }}
+                animate={{ y: 0, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
+                onClick={e => {
+                    props.setCount(count => count + clickAmount)
+                    clickPops.push({ x: e.pageX + (Math.random() * 20) - 10, y: e.pageY })
+                    let control = clickPops.length
+                    setTimeout(() => {
+                        if (clickPops.length === control) setClickPops([])
+                    }, 2100);
+                }}
             >
                 <Image
                     src={Pizza}
                     width={500}
                     height={500}
                     alt='Click the PIZZAAAAAA'
-                    className='cursor-pointer drop-shadow-2xl pointer-events-none'
+                    className='cursor-pointer drop-shadow-xl pointer-events-none'
                 />
             </motion.div>
+            <div className='pointer-events-none absolute w-screen h-screen'>
+                {clickPops.map(e => (
+                    <>
+                        <div 
+                            className='absolute -translate-x-1/2 -translate-y-full'
+                            style={{ top: e.y, left: e.x }}
+                        >
+                            <motion.p
+                                className='text-3xl text-white drop-shadow-lg'
+                                initial={{ opacity: 1, y: 0, scale: 1.25 }}
+                                animate={{ opacity: 0, y: -75, scale: 1 }}
+                                transition={{ duration: 2 }}
+                            >
+                                +{clickAmount}
+                            </motion.p>
+                        </div>
+                        {/* <div 
+                            className='absolute -translate-x-1/2 -translate-y-full'
+                            style={{ top: e.y, left: e.x }}
+                        >
+                            <motion.div
+                                initial={{ y: 0, x: 0, opacity: 1, rotate: (Math.random() * 180) - 90 }}
+                                animate={{ y: -50, x: 10, opacity: 0, rotate: 450 }}
+                                transition={{ type: "spring", stiffness: 10, damping: 10 }}
+                                className='w-[50px] h-[50px] origin-bottom'
+                            >
+                                <Image 
+                                    src={Pizza}
+                                    width={50}
+                                    height={50}
+                                    alt='pizza clickyyy'
+                                    className='absolute top-1/2 left-0'
+                                />
+                            </motion.div>
+                        </div> */}
+                    </>
+                ))}
+            </div>
+            {/* <pre className='absolute top-0 left-0 pointer-events-none'>
+                {JSON.stringify(clickPops, null, 4)}
+            </pre> */}
         </section>
     )
 }

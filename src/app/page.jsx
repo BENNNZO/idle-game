@@ -6,6 +6,7 @@ import Purchasables from "@/components/main/Purchasables"
 
 export default function Home() {
     const [count, setCount] = useState(10000)
+    const [clickCount, setClickCount] = useState(0)
     const [workers, setWorkers] = useState({})
     const [perSecond, setPerSecond] = useState(0)
 
@@ -42,7 +43,11 @@ export default function Home() {
             <div></div>
             <Clicker
                 count={count}
-                click={setCount}
+                setCount={setCount}
+                
+                clickCount={clickCount}
+                setClickCount={setClickCount}
+                
                 perSecond={perSecond}
             />
             <Purchasables 

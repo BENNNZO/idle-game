@@ -3,5 +3,28 @@
 @tailwind utilities;
 
 .animated_background {
-    /* background-image: linear-gradient(to bottom right, white 0%, white 5%, red 5%, red 10%); */
+    animation: background_animation 2s linear infinite;
+    background-size: 150px;
+}
+
+.click_pop {
+    animation: click_pop_animation 1s linear forwards;
+}
+
+@keyframes background_animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 150px 150px;
+    }
+}
+
+@keyframes click_pop_animation {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, calc(-50% - 25px));
+    }
 }
