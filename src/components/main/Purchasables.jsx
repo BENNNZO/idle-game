@@ -30,7 +30,7 @@ export default function Purchasables(props) {
                     width={50}
                     height={50}
                     alt='upgrade drawer toggle'
-                    className={`${toggle ? '' : '-rotate-90'} transition-transform drop-shadow-sm`}
+                    className={`${toggle ? '' : 'rotate-90'} transition-transform drop-shadow-sm`}
                 />
             </button>
             <h2 className='header_nobg animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>WORKERS</h2>

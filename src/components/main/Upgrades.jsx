@@ -27,7 +27,7 @@ export default function Upgrades(props) {
                     width={50}
                     height={50}
                     alt='upgrade drawer toggle'
-                    className={`${toggle ? '' : 'rotate-90'} transition-transform drop-shadow-sm`}
+                    className={`${toggle ? '' : 'rotate-90'} transition-transform delay-200 ease-out drop-shadow-sm`}
                 />
             </button>
             <h2 className='header animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>UPGRADES</h2>
@@ -66,7 +66,7 @@ export default function Upgrades(props) {
                     }
                 })}
             </div>
-            <pre>
+            {/* <pre>
                 {JSON.stringify(props.multipliers, null, 4)}
             </pre>
             <pre>
@@ -74,7 +74,7 @@ export default function Upgrades(props) {
             </pre>
             <pre>
                 {String(toggle)}
-            </pre>
+            </pre> */}
         </motion.section>
     )
 }

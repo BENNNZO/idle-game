@@ -21,8 +21,8 @@ export default function Home() {
     const [play, { pause }] = useSound('/audio/background2.mp3', { volume: 0.65, onend: () => setLoop(c => c += 1), onload: () => setLoop(c => c += 1) })
 
     /* -------------------------------- game vars ------------------------------- */
-    const [count, setCount] = useState(0)
-    const [totalCount, setTotalCount] = useState(0)
+    const [count, setCount] = useState(99)
+    const [totalCount, setTotalCount] = useState(99)
     const [workersCount, setWorkersCount] = useState({})
     const [workersMultipliers, setWorkersMultipliers] = useState({})
     const [perSecond, setPerSecond] = useState(0)
