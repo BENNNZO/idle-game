@@ -11,7 +11,7 @@ import useSound from 'use-sound';
 export default function Clicker(props) {
     const [clickPops, setClickPops] = useState([])
     const [clickAmount, setClickAmount] = useState(1)
-    const [clickSFX] = useSound('/audio/click.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
+    const [clickSFX] = useSound('/audio/pop.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
 
     return (
         <section 

@@ -8,8 +8,12 @@ import { workers } from '@/constants/workers';
 
 import Background from '@/assets/main/background-tile.jpg'
 import Pizza from '@/assets/products/pizza.png'
+import useSound from 'use-sound';
 
 export default function Purchasables(props) {
+    const [buySound] = useSound('/audio/click.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
+    const [errorSound] = useSound('/audio/error.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
+
     return (
         <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>
             <div className='flex flex-col gap-5'>
@@ -23,8 +27,11 @@ export default function Purchasables(props) {
                             whileTap={{ scale: 0.99, transition: { type: "spring", stiffness: 500 }}}
                             onClick={() => {
                                 if (props.count >= adjustedPrice) { // if user has enough money it updates the global workers object and takes the money away
+                                    buySound()
                                     props.setWorkers(prev => ({...prev, [e.name]: (prev[e.name] || 0) + 1}))
                                     props.setCount(count => count - adjustedPrice)
+                                } else {
+                                    errorSound()
                                 }
                             }}
                         >
