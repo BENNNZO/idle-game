@@ -64,9 +64,9 @@ export default function Purchasables(props) {
                     )
                 })}
             </div>
-            <pre>
+            {/* <pre>
                 {JSON.stringify(props.workers, null, 4)}
-            </pre>
+            </pre> */}
         </section>
     )
 }
