@@ -26,9 +26,10 @@ export default function Clicker(props) {
                 whileTap={{ scale: 0.95, transition: { type: "spring", stiffness: 1000 }}}
                 initial={{ y: 10 }}
                 animate={{ y: 0, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
-                onClick={e => {
+                onMouseDown={e => {
                     clickSFX()
                     props.setCount(count => count + clickAmount)
+                    props.setTotalCount(total => total + clickAmount)
                     clickPops.push({ x: e.pageX + (Math.random() * 20) - 10, y: e.pageY })
                     let control = clickPops.length
                     setTimeout(() => {
