@@ -35,6 +35,9 @@ export default function Purchasables(props) {
                                 }
                             }}
                         >
+                            <motion.div
+                                animate={{ scale: [0.9, 1], transition: { duration: 1, repeatType: "mirror", repeat: Infinity, ease: "easeInOut", delay: 0.25 * i }}}
+                            >
                                 <Image 
                                     src={e.src}
                                     width={100}
@@ -42,6 +45,7 @@ export default function Purchasables(props) {
                                     alt={e.title}
                                     className='drop-shadow-lg p-2'
                                 />
+                            </motion.div>
                             <div className='bg-white w-full rounded-md p-2 flex flex-row justify-between'>
                                 <div className='flex flex-col pl-2 justify-between'>
                                     <p className='text-3xl text-main-medium'>{e.title}</p>
