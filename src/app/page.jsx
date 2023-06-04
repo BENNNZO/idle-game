@@ -3,34 +3,31 @@
 import React, { useState, useEffect } from 'react';
 import Clicker from "@/components/main/Clicker"
 import Purchasables from "@/components/main/Purchasables"
+import Upgrades from '@/components/main/Upgrades';
+
+import { workers } from '@/constants/workers';
 
 export default function Home() {
     const [count, setCount] = useState(1000)
-    const [clickCount, setClickCount] = useState(0)
-    const [workers, setWorkers] = useState({})
+    const [workersCount, setWorkersCount] = useState({})
+    const [workersMultipliers, setWorkersMultipliers] = useState({})
     const [perSecond, setPerSecond] = useState(0)
 
     const [tick, setTick] = useState(0)
     const [controlDate, setControlDate] = useState(new Date)
 
     useEffect(() => {
-        /* --------------------- update amount based on workers --------------------- */
+        /* --------------------- update perSec based on workers --------------------- */
         let amount = 0
-
-        amount += workers.italian * 0.1 || 0 //    0.1s per  /  Italian
-        amount += workers.chef_hat * 2 || 0 //   0.5s per  /  Chef's Hat
-
+        workers.forEach(e => amount += workersCount[e.name] * e.perSecond || 0) // for each type of worker adjust amount per second
         setPerSecond(amount)
-
-
+        
         /* ----------- set interval for updates ---------- */
         const updateCount = setInterval(() => {
             setTick(prevTick => prevTick + 1) // update tick so that a useEffect can handle all the updates
         }, 25);
-
-        /* ----------------- create new interval when workers update ---------------- */
         return () => clearInterval(updateCount)
-    }, [workers])
+    }, [workersCount])
 
     useEffect(() => { // updates count as fast as possible but consistant cause of time
         let date = new Date // makes sure the next 2 lines use the same date and that is isnt off by a little amount
@@ -40,16 +37,17 @@ export default function Home() {
         
     return (
         <main className="grid grid-cols-3 w-screen h-screen">
-            <div>
+            {/* <div>
                 upgrades section
-                <p>{String(tick)}</p>
-            </div>
+                <p>Tick: {String(tick)}</p>
+            </div> */}
+            <Upgrades
+                count={count}
+                setCount={setCount}
+            />
             <Clicker
                 count={count}
                 setCount={setCount}
-                
-                clickCount={clickCount}
-                setClickCount={setClickCount}
                 
                 perSecond={perSecond}
             />
@@ -57,8 +55,8 @@ export default function Home() {
                 count={count}
                 setCount={setCount}
 
-                workers={workers}
-                setWorkers={setWorkers}
+                workers={workersCount}
+                setWorkers={setWorkersCount}
             />
         </main>
     )

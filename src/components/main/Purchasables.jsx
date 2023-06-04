@@ -4,59 +4,37 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import ItalianPNG from '@/assets/products/italian.png'
-import ChefHatPNG from '@/assets/products/chef_hat.png'
+import { workers } from '@/constants/workers';
 
 import Background from '@/assets/main/background-tile.jpg'
-import Pizza from '@/assets/main/pizza.png'
+import Pizza from '@/assets/products/pizza.png'
 
 export default function Purchasables(props) {
-    const purchasables = [
-        {
-            title: "Italian",
-            name: "italian",
-            basePrice: 10,
-            perSecond: 0.1,
-            src: ItalianPNG
-        },
-        {
-            title: "Chef's Hat",
-            name: "chef_hat",
-            basePrice: 100,
-            perSecond: 2,
-            src: ChefHatPNG
-        }
-    ]
-
     return (
-        <section className='select-none border-l border-white cursor-pointer p-5 bg-white'>
+        <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>
             <div className='flex flex-col gap-5'>
-                {purchasables.map((e, i) => {
+                {workers.map((e, i) => {
                     let adjustedPrice = Math.round(e.basePrice * Math.pow(1.15, props.workers[e.name] || 0))
                     return (
                         <motion.div
                             key={i}
                             className='w-full animated_background shadow-md rounded-lg flex flex-row p-1' 
                             style={{ backgroundImage: `url(${Background.src})` }}
+                            whileTap={{ scale: 0.99, transition: { type: "spring", stiffness: 500 }}}
                             onClick={() => {
-                                if (props.count >= e.basePrice) { // if user has enough money it updates the global workers object and takes the money away
+                                if (props.count >= adjustedPrice) { // if user has enough money it updates the global workers object and takes the money away
                                     props.setWorkers(prev => ({...prev, [e.name]: (prev[e.name] || 0) + 1}))
-                                    props.setCount(count => count - e.basePrice)
+                                    props.setCount(count => count - adjustedPrice)
                                 }
                             }}
-                            whileTap={{ scale: 0.99, transition: { type: "spring", stiffness: 500 }}}
                         >
-                            <div 
-                                className='grid place-items-center px-2'
-                            >
                                 <Image 
                                     src={e.src}
                                     width={100}
                                     height={100}
                                     alt={e.title}
-                                    className='drop-shadow-lg'
+                                    className='drop-shadow-lg p-2'
                                 />
-                            </div>
                             <div className='bg-white w-full rounded-md p-2 flex flex-row justify-between'>
                                 <div className='flex flex-col pl-2 justify-between'>
                                     <p className='text-3xl text-main-medium'>{e.title}</p>
@@ -79,9 +57,9 @@ export default function Purchasables(props) {
                     )
                 })}
             </div>
-            {/* <pre>
+            <pre>
                 {JSON.stringify(props.workers, null, 4)}
-            </pre> */}
+            </pre>
         </section>
     )
 }
