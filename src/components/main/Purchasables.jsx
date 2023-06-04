@@ -16,7 +16,8 @@ export default function Purchasables(props) {
 
     return (
         <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>
-            <div className='flex flex-col gap-5'>
+            <h2 className='text-main-medium text-7xl text-center'>WORKERS</h2>
+            <div className='flex flex-col gap-5 mt-5'>
                 {workers.map((e, i) => {
                     let adjustedPrice = Math.round(e.basePrice * Math.pow(1.15, props.workers[e.name] || 0))
                     return (
@@ -53,9 +54,9 @@ export default function Purchasables(props) {
                                         <div className='flex flex-row items-center gap-2 bg-main/20 px-2 rounded-lg'>
                                             <Image // i hate how many divs this is nested in but the layout it allot so i dont really know a better way to do this unless i use vanilla CSS and grid
                                                 src={Pizza}
-                                                width={20}
-                                                height={20}
-                                                alt='Amount'
+                                                width={25}
+                                                height={25}
+                                                alt='price'
                                             />
                                             <p className='text-2xl text-main-medium/70'>{adjustedPrice}</p>
                                         </div>

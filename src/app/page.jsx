@@ -79,6 +79,7 @@ export default function Home() {
                 setCount={setCount}
 
                 setMultipliers={setWorkersMultipliers}
+                multipliers={workersMultipliers}
 
                 totalCount={totalCount}
             />
