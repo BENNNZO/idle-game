@@ -11,7 +11,7 @@ import useSound from 'use-sound';
 export default function Clicker(props) {
     const [clickPops, setClickPops] = useState([])
     const [clickAmount, setClickAmount] = useState(1)
-    const [clickSFX] = useSound('/audio/click3.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9 })
+    const [clickSFX] = useSound('/audio/click.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
 
     return (
         <section 
@@ -45,41 +45,21 @@ export default function Clicker(props) {
                 />
             </motion.div>
             <div className='pointer-events-none absolute w-screen h-screen'>
-                {clickPops.map(e => (
-                    <>
-                        <div 
-                            className='absolute -translate-x-1/2 -translate-y-full'
-                            style={{ top: e.y, left: e.x }}
+                {clickPops.map((e, i) => (
+                    <div 
+                        key={i}
+                        className='absolute -translate-x-1/2 -translate-y-full'
+                        style={{ top: e.y, left: e.x }}
+                    >
+                        <motion.p
+                            className='text-3xl text-white drop-shadow-lg'
+                            initial={{ opacity: 1, y: 0, scale: 1.25 }}
+                            animate={{ opacity: 0, y: -75, scale: 1 }}
+                            transition={{ duration: 2 }}
                         >
-                            <motion.p
-                                className='text-3xl text-white drop-shadow-lg'
-                                initial={{ opacity: 1, y: 0, scale: 1.25 }}
-                                animate={{ opacity: 0, y: -75, scale: 1 }}
-                                transition={{ duration: 2 }}
-                            >
-                                +{clickAmount}
-                            </motion.p>
-                        </div>
-                        {/* <div 
-                            className='absolute -translate-x-1/2 -translate-y-full'
-                            style={{ top: e.y, left: e.x }}
-                        >
-                            <motion.div
-                                initial={{ y: 0, x: 0, opacity: 1, rotate: (Math.random() * 180) - 90 }}
-                                animate={{ y: -50, x: 10, opacity: 0, rotate: 450 }}
-                                transition={{ type: "spring", stiffness: 10, damping: 10 }}
-                                className='w-[50px] h-[50px] origin-bottom'
-                            >
-                                <Image 
-                                    src={Pizza}
-                                    width={50}
-                                    height={50}
-                                    alt='pizza clickyyy'
-                                    className='absolute top-1/2 left-0'
-                                />
-                            </motion.div>
-                        </div> */}
-                    </>
+                            +{clickAmount}
+                        </motion.p>
+                    </div>
                 ))}
             </div>
             {/* <pre className='absolute top-0 left-0 pointer-events-none'>

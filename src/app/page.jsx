@@ -6,8 +6,12 @@ import Purchasables from "@/components/main/Purchasables"
 import Upgrades from '@/components/main/Upgrades';
 
 import { workers } from '@/constants/workers';
+import useSound from 'use-sound';
 
 export default function Home() {
+    const [loop, setLoop] = useState(0)
+    const [play] = useSound('/audio/background.mp3', { volume: 0.65, onend: () => setLoop(c => c += 1), onload: () => setLoop(c => c += 1) })
+
     const [count, setCount] = useState(1000)
     const [workersCount, setWorkersCount] = useState({})
     const [workersMultipliers, setWorkersMultipliers] = useState({})
@@ -34,7 +38,11 @@ export default function Home() {
         setCount(count => count + (perSecond / (1000 / (date - controlDate))))
         setControlDate(date)
     }, [tick])
-        
+    
+    useEffect(() => {
+        play()
+    }, [loop])
+
     return (
         <main className="grid grid-cols-3 w-screen h-screen">
             {/* <div>
