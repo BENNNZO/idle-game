@@ -16,16 +16,16 @@ export default function Purchasables(props) {
 
     return (
         <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>
-            <h2 className='text-main-medium text-7xl text-center'>WORKERS</h2>
+            <h2 className='header_nobg animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>WORKERS</h2>
             <div className='flex flex-col gap-5 mt-5'>
                 {workers.map((e, i) => {
                     let adjustedPrice = Math.round(e.basePrice * Math.pow(1.15, props.workers[e.name] || 0))
                     return (
                         <motion.div
                             key={i}
-                            className='w-full animated_background shadow-md rounded-lg flex flex-row p-1' 
+                            className={`w-full animated_background shadow-md rounded-lg flex flex-row p-1 transition-all ${props.count < adjustedPrice ? 'grayscale scale-95' : ''}`}
                             style={{ backgroundImage: `url(${Background.src})` }}
-                            whileTap={{ scale: 0.99, transition: { type: "spring", stiffness: 500 }}}
+                            // whileTap={{ scale: 0.99, transition: { type: "spring", stiffness: 500 }}}
                             onClick={() => {
                                 if (props.count >= adjustedPrice) { // if user has enough money it updates the global workers object and takes the money away
                                     buySound()

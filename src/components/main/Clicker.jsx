@@ -18,8 +18,8 @@ export default function Clicker(props) {
             style={{ backgroundImage: `url(${Background.src})` }}
         >
             <div className='flex flex-col absolute top-16 text-white drop-shadow-md text-center'>
-                <p className='text-7xl'>{(Math.round(props.count)).toLocaleString("en-US")}</p>
-                <p className='text-2xl'>{(Math.round(props.perSecond * 10) / 10).toLocaleString("en-US")}/s</p>
+                <p className='text-7xl'>{(Math.floor(props.count)).toLocaleString("en-US")}</p>
+                <p className='text-2xl'>{(Math.floor(props.perSecond * 10) / 10).toLocaleString("en-US")}/s</p>
             </div>
             <motion.div
                 whileTap={{ scale: 0.95, transition: { type: "spring", stiffness: 1000 }}}

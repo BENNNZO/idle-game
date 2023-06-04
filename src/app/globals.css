@@ -11,6 +11,14 @@
     animation: click_pop_animation 1s linear forwards;
 }
 
+.header {
+    @apply text-7xl text-center bg-gradient-to-br drop-shadow-lg from-main to-main-medium text-transparent bg-clip-text
+}
+
+.header_nobg {
+    @apply text-7xl text-center drop-shadow-lg text-transparent bg-clip-text
+}
+
 @keyframes background_animation {
     0% {
         background-position: 0% 0%;

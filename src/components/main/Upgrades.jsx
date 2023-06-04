@@ -13,14 +13,15 @@ export default function Upgrades(props) {
 
     return (
         <section className='border-r-8 border-main-medium/80 p-5'>
-            <h2 className='text-main-medium text-7xl text-center'>UPGRADES</h2>
+            <h2 className='header animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>UPGRADES</h2>
+            <p className='text-md text-black/20 text-center'>Unlock more upgrades buy collecting more pizzas!</p>
             <div className='grid grid-cols-2 gap-3 mt-5'>
                 {upgrades.map((e, i) => {
                     if (props.totalCount >= e.limit && !bought.includes(i)) {
                         return (
                             <div 
                                 key={i}
-                                className={`animated_background p-1 rounded-lg cursor-pointer ${props.count >= e.price ? '' : 'grayscale'}`}
+                                className={`animated_background p-1 rounded-lg cursor-pointer transition-all ${props.count >= e.price ? '' : 'grayscale scale-95 opacity-80'}`}
                                 style={{ backgroundImage: `url(${Background.src})` }}
                                 onClick={() => {
                                     if (props.count >= e.price) {
