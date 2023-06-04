@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -8,14 +8,31 @@ import { workers } from '@/constants/workers';
 
 import Background from '@/assets/main/background-tile.jpg'
 import Pizza from '@/assets/products/pizza.png'
+import Upgrade from '@/assets/other/upgrade2.png'
 import useSound from 'use-sound';
 
 export default function Purchasables(props) {
     const [buySound] = useSound('/audio/click.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
     const [errorSound] = useSound('/audio/error2.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.75 })
 
+    const [toggle, setToggle] = useState(true)
+
     return (
-        <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>
+        <motion.section 
+            className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white absolute top-0 right-0 w-1/3 h-full'
+            initial={{ x: "100%" }}
+            animate={toggle ? { x: 0 } : { x: "100%" }}
+        >
+            <div className='absolute h-full w-96 -right-96 bg-white top-0'></div>
+            <button className='bg-white drop-shadow-md absolute top-10 z-10 right-full mr-10 rounded-full grid place-items-center w-12 h-12' onClick={() => setToggle(prev => !prev)}>
+                <Image 
+                    src={Upgrade}
+                    width={50}
+                    height={50}
+                    alt='upgrade drawer toggle'
+                    className={`${toggle ? '' : '-rotate-90'} transition-transform drop-shadow-sm`}
+                />
+            </button>
             <h2 className='header_nobg animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>WORKERS</h2>
             <div className='flex flex-col gap-5 mt-5'>
                 {workers.map((e, i) => {
@@ -72,6 +89,6 @@ export default function Purchasables(props) {
             {/* <pre>
                 {JSON.stringify(props.workers, null, 4)}
             </pre> */}
-        </section>
+        </motion.section>
     )
 }

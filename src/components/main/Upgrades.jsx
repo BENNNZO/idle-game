@@ -2,17 +2,34 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import { upgrades } from '@/constants/upgrades';
 
 import Background from '@/assets/main/background-tile.jpg'
 import Pizza from '@/assets/products/pizza.png'
+import Upgrade from '@/assets/other/upgrade2.png'
 
 export default function Upgrades(props) {
     const [bought, setBought] = useState([]) // array of id's that match the index of certain upgrades depending on what you buy
+    const [toggle, setToggle] = useState(true)
 
     return (
-        <section className='border-r-8 border-main-medium/80 p-5'>
+        <motion.section 
+            className='border-r-8 border-main-medium/80 p-5 absolute top-0 left-0 z-10 bg-white h-full w-1/3'
+            initial={{ x: "-100%" }}
+            animate={toggle ? { x: 0 } : { x: "-100%" }}
+        >
+            <div className='absolute h-full w-96 -left-96 bg-white top-0'></div>
+            <button className='bg-white drop-shadow-md absolute top-10 z-10 left-full ml-10 rounded-full grid place-items-center w-12 h-12' onClick={() => setToggle(prev => !prev)}>
+                <Image 
+                    src={Upgrade}
+                    width={50}
+                    height={50}
+                    alt='upgrade drawer toggle'
+                    className={`${toggle ? '' : 'rotate-90'} transition-transform drop-shadow-sm`}
+                />
+            </button>
             <h2 className='header animated_background brightness-90' style={{ backgroundImage: `url(${Background.src})` }}>UPGRADES</h2>
             <p className='text-md text-black/20 text-center'>Unlock more upgrades buy collecting more pizzas!</p>
             <div className='grid grid-cols-2 gap-3 mt-5'>
@@ -49,12 +66,15 @@ export default function Upgrades(props) {
                     }
                 })}
             </div>
-            {/* <pre>
+            <pre>
                 {JSON.stringify(props.multipliers, null, 4)}
             </pre>
             <pre>
                 {JSON.stringify(bought, null, 4)}
-            </pre> */}
-        </section>
+            </pre>
+            <pre>
+                {String(toggle)}
+            </pre>
+        </motion.section>
     )
 }

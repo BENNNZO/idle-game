@@ -57,7 +57,7 @@ export default function Home() {
     // }, [loop])
 
     return (
-        <main className="grid grid-cols-3 w-screen h-screen">
+        <main className="w-screen h-screen relative overflow-hidden">
             {/* <button onClick={() => {pauseState ? play() : pause(); setPauseState(prev => !prev)}} className='absolute top-10 left-10 border border-black px-3 py-1'>Mute Music</button> */}
             {/* {init ? (
                 <div className='z-50 absolute w-screen h-screen top-0 left-0 bg-main-medium/50 backdrop-blur-md' onKeyDown={() => setInit(prev => !prev)} onClick={() => setInit(prev => !prev)}>
