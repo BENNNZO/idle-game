@@ -12,7 +12,7 @@ import useSound from 'use-sound';
 
 export default function Purchasables(props) {
     const [buySound] = useSound('/audio/click.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
-    const [errorSound] = useSound('/audio/error.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
+    const [errorSound] = useSound('/audio/error2.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.75 })
 
     return (
         <section className='select-none border-l-8 border-main-medium/80 cursor-pointer p-5 bg-white'>

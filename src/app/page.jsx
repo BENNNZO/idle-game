@@ -10,7 +10,9 @@ import useSound from 'use-sound';
 
 export default function Home() {
     const [loop, setLoop] = useState(0)
-    const [play] = useSound('/audio/background.mp3', { volume: 0.65, onend: () => setLoop(c => c += 1), onload: () => setLoop(c => c += 1) })
+    const [pauseState, setPauseState] = useState(false)
+    const [play, { pause }] = useSound('/audio/background2.mp3', { volume: 0.65, onend: () => setLoop(c => c += 1), onload: () => setLoop(c => c += 1) })
+
 
     const [count, setCount] = useState(1000)
     const [workersCount, setWorkersCount] = useState({})
@@ -45,6 +47,7 @@ export default function Home() {
 
     return (
         <main className="grid grid-cols-3 w-screen h-screen">
+            <button onClick={() => {pauseState ? play() : pause(); setPauseState(prev => !prev)}} className='absolute top-10 left-10 border border-black px-3 py-1'>Mute Music</button>
             {/* <div>
                 upgrades section
                 <p>Tick: {String(tick)}</p>
