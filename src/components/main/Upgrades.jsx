@@ -8,7 +8,7 @@ export default function Upgrades(props) {
         <section className='border-r-8 border-main-medium/80'>
             {upgrades.map((e, i) => {
                 return (
-                    <div></div>
+                    <div key={i}></div>
                 )
             })}
         </section>

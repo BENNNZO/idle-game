@@ -6,10 +6,12 @@ import Image from 'next/image';
 
 import Pizza from '@/assets/main/pizza.png'
 import Background from '@/assets/main/background-tile.jpg'
+import useSound from 'use-sound';
 
 export default function Clicker(props) {
     const [clickPops, setClickPops] = useState([])
     const [clickAmount, setClickAmount] = useState(1)
+    const [clickSFX] = useSound('/audio/click3.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9 })
 
     return (
         <section 
@@ -25,6 +27,7 @@ export default function Clicker(props) {
                 initial={{ y: 10 }}
                 animate={{ y: 0, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
                 onClick={e => {
+                    clickSFX()
                     props.setCount(count => count + clickAmount)
                     clickPops.push({ x: e.pageX + (Math.random() * 20) - 10, y: e.pageY })
                     let control = clickPops.length
