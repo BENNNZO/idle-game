@@ -20,7 +20,7 @@ export default function Upgrades(props) {
                         return (
                             <div 
                                 key={i}
-                                className='animated_background p-1 rounded-lg cursor-pointer'
+                                className={`animated_background p-1 rounded-lg cursor-pointer ${props.count >= e.price ? '' : 'grayscale'}`}
                                 style={{ backgroundImage: `url(${Background.src})` }}
                                 onClick={() => {
                                     if (props.count >= e.price) {

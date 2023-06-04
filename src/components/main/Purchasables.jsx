@@ -60,7 +60,7 @@ export default function Purchasables(props) {
                                             />
                                             <p className='text-2xl text-main-medium/70'>{adjustedPrice}</p>
                                         </div>
-                                        <p className='text-lg text-main-medium/50 bg-main/20 px-2 rounded-lg grid place-items-center'>{e.perSecond}/s</p>
+                                        <p className='text-lg text-main-medium/50 bg-main/20 px-2 rounded-lg grid place-items-center'>{e.perSecond * (props.multiplier[e.name] || 1)}/s</p>
                                     </div>
                                 </div>
                                 <p className='text-main-medium drop-shadow-md text-6xl grid place-items-center pr-5'>{props.workers[e.name] || 0}</p>

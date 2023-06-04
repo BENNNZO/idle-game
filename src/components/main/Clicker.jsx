@@ -10,7 +10,6 @@ import useSound from 'use-sound';
 
 export default function Clicker(props) {
     const [clickPops, setClickPops] = useState([])
-    const [clickAmount, setClickAmount] = useState(1)
     const [clickSFX] = useSound('/audio/pop.mp3', { interrupt: false, playbackRate: (Math.random() / 5) + 0.9, volume: 0.4 })
 
     return (
@@ -28,8 +27,8 @@ export default function Clicker(props) {
                 animate={{ y: 0, transition: { repeatType: "mirror", repeat: Infinity, duration: 2, ease: "easeInOut" }}}
                 onMouseDown={e => {
                     clickSFX()
-                    props.setCount(count => count + clickAmount)
-                    props.setTotalCount(total => total + clickAmount)
+                    props.setCount(count => count + props.clickMultiplier)
+                    props.setTotalCount(total => total + props.clickMultiplier)
                     clickPops.push({ x: e.pageX + (Math.random() * 20) - 10, y: e.pageY })
                     let control = clickPops.length
                     setTimeout(() => {
@@ -58,7 +57,7 @@ export default function Clicker(props) {
                             animate={{ opacity: 0, y: -75, scale: 1 }}
                             transition={{ duration: 2 }}
                         >
-                            +{clickAmount}
+                            +{props.clickMultiplier}
                         </motion.p>
                     </div>
                 ))}

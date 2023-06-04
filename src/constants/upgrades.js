@@ -1,10 +1,10 @@
 export const upgrades = [
     {
-        title: "Mama Mia",
-        desc: "Double the profits of your Italians!",
-        worker_name: "italian",
+        title: "Clickkkk",
+        desc: "+1 Pizzas Per Click",
+        worker_name: "click",
         multiplier: 2,
-        limit: 100,
+        limit: 0,
         price: 100
     },
     {
@@ -12,15 +12,7 @@ export const upgrades = [
         desc: "Double the profits of your Italians!",
         worker_name: "italian",
         multiplier: 2,
-        limit: 100,
-        price: 100
-    },
-    {
-        title: "Mama Mia",
-        desc: "Double the profits of your Italians!",
-        worker_name: "italian",
-        multiplier: 2,
-        limit: 100,
-        price: 100
+        limit: 50,
+        price: 250
     }
 ]
